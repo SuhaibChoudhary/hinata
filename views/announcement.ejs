@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <%- include('server-nav')%>
+        <style>
+            hr {
+                color: #fff;
+            }
+
+            body {
+                color: #fff;
+                background-color: #343a40;
+            }
+
+            .container {
+                text-align: left;
+                padding: 10px 5px;
+                margin: 10px 20px 10px;
+                border-radius: 5px;
+                width: 90%;
+                margin: auto;
+                background-color: rgb(35, 39, 42);
+            }
+
+            .container label {
+                padding: 2px 5px;
+                margin: 20px 5px;
+                font-size: 20px;
+                font-weight: bold;
+            }
+
+            .container input {
+                border-radius: 4px;
+                height: 50px;
+                background-color: #343a40;
+                color: #fff;
+                width: 60%;
+                border: 1px solid blue;
+            }
+
+            .container .toggle-label h2 {
+                text-align: left;
+                padding: 6px 5px 5px;
+                margin: 5px 0;
+            }
+
+
+            .container select {
+                border-radius: 4px;
+                height: 50px;
+                background-color: #343a40;
+                color: #fff;
+                width: 60%;
+                border: 1px solid blue;
+            }
+
+            .toggle-label {
+                display: flex;
+                align-items: center;
+                justify-content: flex-end;
+                margin-bottom: 10px;
+            }
+
+            .toggle-input {
+                display: none;
+            }
+
+            .toggle-slider {
+                position: relative;
+                display: inline-block;
+                width: 40px;
+                height: 20px;
+                border-radius: 15px;
+                background-color: #ccc;
+                transition: background-color 0.3s ease;
+            }
+
+            .toggle-slider:before {
+                content: '';
+                position: absolute;
+                top: 2px;
+                left: 2px;
+                width: 16px;
+                height: 16px;
+                border-radius: 50%;
+                background-color: #fff;
+                transition: transform 0.3s ease;
+            }
+
+            .toggle-input:checked+.toggle-slider {
+                background-color: #2196F3;
+            }
+
+            .toggle-input:checked+.toggle-slider:before {
+                transform: translateX(20px);
+            }
+
+            .toggle-items {
+                display: none;
+            }
+
+            .toggle-input:checked~.toggle-items {
+                display: block;
+            }
+        </style>
+</head>
+
+<body>
+    <br>
+    <div class="container">
+        <label for="toggleCheckbox" class="toggle-label" style="display: flex; align-items: center;">
+          <h2 style="text-align: left; flex: 1;"><strong>Send a message when a user joins the server</strong></h2>
+          <div style="text-align: right;">
+            <input type="checkbox" id="toggleCheckbox" class="toggle-input">
+            <span class="toggle-slider"></span>
+          </div>
+        </label>
+    
+        <div id="formContainer" style="display: none;">
+          <hr>
+          <label>Message Channel</label><br>
+          <select>
+            <option value="">None</option>
+            <% guild.channels.cache.filter(channel => channel.type === 0).forEach(channel => { %>
+            <option value="<%= channel.id %>">
+              <%= channel.name %>
+            </option>
+            <% }) %>
+          </select>
+          <hr>
+          <label>Message</label><br>
+          <input id="messageInput" style="width: 90%; padding: 0%; height: 150px; margin-top:0%; text-align: left; resize: vertical;"
+            type="text" placeholder="Enter your message here...">
+          <hr>
+        </div>
+      </div>
+    
+      <script>
+        const toggleCheckbox = document.getElementById("toggleCheckbox");
+        const messageInput = document.getElementById("messageInput");
+        const formContainer = document.getElementById("formContainer");
+    
+        toggleCheckbox.addEventListener("change", function() {
+          messageInput.disabled = !this.checked;
+          if (this.checked) {
+            formContainer.style.display = "block"; // Show the form
+          } else {
+            formContainer.style.display = "none"; // Hide the form
+          }
+        });
+      </script>
+
+</body>
+
+</html>

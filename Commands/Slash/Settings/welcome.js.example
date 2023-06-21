@@ -1,0 +1,121 @@
+const { EmbedBuilder } = require('discord.js');
+const welcome = require('../../../Database/welcome');
+
+module.exports = {
+  name: 'welcome',
+  description: 'Toggle the welcome message and channel.',
+  options: [
+    {
+      name: 'channel',
+      description: 'Manage welcome channels.',
+      type: 1, // Subcommand type
+    },
+    {
+      name: 'message',
+      description: 'Change Welcome Message.',
+      type: 1, // String type
+      required: false,
+    },
+    {
+      name: 'toggle',
+      description: 'Toggle the welcome message and channel.',
+      type: 1, // Boolean type
+      required: false,
+    },
+  ],
+  run: async (client, interaction) => {
+    const { options } = interaction;
+
+    if (options.getBoolean('toggle')) {
+      // Code for toggling the welcome message and channel
+      const guildId = interaction.guildId;
+      let data = await welcome.findOne({ guildId });
+
+      if (!data) {
+        data = new welcome({
+          guildId,
+          isEnabled: true,
+          welcomeChannels: [],
+          welcomeMessage: '',
+        });
+      }
+
+      data.isEnabled = !data.isEnabled; // Toggle the value
+
+      await data.save();
+
+      const status = data.isEnabled ? 'enabled' : 'disabled';
+      const embed = new EmbedBuilder()
+        .setTitle('Welcome Message and Channel')
+        .setDescription(`Welcome message and channel have been ${status}.`);
+
+      await interaction.reply({ embeds: [embed] });
+    } else if (options.getString('message')) {
+      // Code for setting custom welcome message
+      const guildId = interaction.guildId;
+      const welcomeMessage = options.getString('message');
+      let data = await welcome.findOne({ guildId });
+
+      if (!data) {
+        data = new welcome({
+          guildId,
+          isEnabled: true,
+          welcomeChannels: [],
+          welcomeMessage,
+        });
+      } else {
+        data.welcomeMessage = welcomeMessage;
+      }
+
+      await data.save();
+
+      const embed = new EmbedBuilder()
+        .setTitle('Custom Welcome Message Set')
+        .setDescription('The custom welcome message has been set.');
+
+      await interaction.reply({ embeds: [embed] });
+    } else if (options.getSubcommand() === 'channel') {
+      const guildId = interaction.guildId;
+      let data = await welcome.findOne({ guildId });
+
+      if (!data) {
+        data = new welcome({
+          guildId,
+          isEnabled: true,
+          welcomeChannels: [],
+          welcomeMessage: '',
+        });
+      }
+
+      const channelToAdd = options.getChannel('add');
+      const channelToDelete = options.getChannel('delete');
+
+      if (channelToAdd) {
+        // Add the channel to the welcome channels list
+        if (!data.welcomeChannels.includes(channelToAdd.id)) {
+          data.welcomeChannels.push(channelToAdd.id);
+        }
+        await data.save();
+
+        const embed = new EmbedBuilder()
+          .setTitle('Welcome Channel Added')
+          .setDescription(`The channel <#${channelToAdd.id}> has been added as a welcome channel.`);
+
+        await interaction.reply({ embeds: [embed] });
+      } else if (channelToDelete) {
+        // Delete the channel from the welcome channels list
+        const channelIndex = data.welcomeChannels.indexOf(channelToDelete.id);
+        if (channelIndex > -1) {
+          data.welcomeChannels.splice(channelIndex, 1);
+        }
+        await data.save();
+
+        const embed = new EmbedBuilder()
+          .setTitle('Welcome Channel Deleted')
+          .setDescription(`The channel <#${channelToDelete.id}> has been deleted from the welcome channels.`);
+
+        await interaction.reply({ embeds: [embed] });
+      }
+    }
+  },
+};

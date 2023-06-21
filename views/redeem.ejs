@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Redeem Code</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      background-color: #222;
+      color: #eee;
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    .card {
+      background-color: #333;
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+    }
+
+    .card img {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      margin-right: 10px;
+    }
+
+    .redeem-form {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .redeem-form input[type="text"] {
+      padding: 8px;
+      width: 300px;
+      margin-right: 10px;
+    }
+
+    .redeem-form input[type="submit"] {
+      padding: 8px 20px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+      border-radius: 4px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+    }
+
+    .redeem-form input[type="submit"]:hover {
+      background-color: #45a049;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+    }
+
+    .premium-message {
+      margin-top: 20px;
+      text-align: center;
+      font-size: 18px;
+      color: #4CAF50;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+    }
+
+    .premium-message.expired {
+      color: #f44336;
+    }
+  </style>
+</head>
+<body>
+  <h1>Redeem Code</h1>
+  <div class="card">
+    <% if (guild.icon) { %>
+      <img src="https://cdn.discordapp.com/icons/<%= guild.id %>/<%= guild.icon %>" class="card-img-top" style="max-width: 50px; height: 50px; border-radius: 50%; margin-right: 10px;">
+    <% } else { %>
+      <img src="https://th.bing.com/th/id/OIP.5on3eK1ZSzKZHhJ40eq4qAHaHa?pid=ImgDet&rs=1" class="card-img-top" style="max-width: 50px; height: 50px; border-radius: 50%; margin-right: 10px;">
+    <% } %>
+    <span>Guild: <%= guild.id %></span>
+    <% if (premium) { %>
+      <div class="premium-message <%= premium.premium ? '' : 'expired' %>">
+        <% if (premium.premium) { %>
+          Premium activated. Expires on <%= premium.expirationDate.toDateString() %>
+        <% } else { %>
+          Premium not activated
+        <% } %>
+      </div>
+    <% } else { %>
+      <div class="premium-message expired">
+        Premium not activated
+      </div>
+    <% } %>
+  </div>
+  <div class="redeem-form">
+    <form action="/dashboard/<%= guild.id %>/redeem" method="POST">
+      <input type="hidden" name="guild.id" value="<%= guild.id %>">
+      <input type="text" name="code" placeholder="Enter the redeem code">
+      <input type="submit" value="Activate Premium">
+    </form>
+  </div>
+</body>
+</html>

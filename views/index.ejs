@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Noisy Discord Bot</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        body {
+            width: 100%;
+            font-family: Arial, sans-serif;
+            background: #242424;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            min-height: 800px;
+            background-color: #36393F;
+            text-align: center;
+            padding: 15px;
+            box-sizing: border-box;
+            color: #ffffff;
+        }
+
+        .green {
+            color: #66D390;
+        }
+
+        .logo {
+            font-family: cursive;
+            color: white;
+            font-size: 30px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            text-align: left;
+            font-size: 20px;
+            color: #ffffff;
+            margin-bottom: 2px;
+            word-spacing: 3px;
+        }
+
+        .purple {
+            color: #6E59E6;
+        }
+
+        h3 {
+            font-family: Arial, sans-serif;
+            color: #6E59E6;
+            /* Discord purple color */
+            font-size: 11upx;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        h1 {
+            color: white;
+            font-family: Arial, sans-serif, bold;
+            font-size: 50px;
+            text-align: center;
+        }
+
+        .button {
+            margin: 10px 15px 5px;
+            height: 60px;
+            width: 40%;
+            background-color: #6E59E6;
+            color: #ffffff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .button:hover {
+            background-color: #8C78FF;
+            color: #ffffff;
+            /* Set the text color on hover */
+        }
+
+        .styled-link {
+            color: #ffffff;
+            /* Text color */
+            text-decoration: none;
+            /* Remove underline */
+            font-weight: bold;
+            /* Make the text bold */
+            transition: color 0.3s ease;
+            /* Smooth transition for color change */
+        }
+
+        .styled-link:hover {
+            color: #8C78FF;
+            /* Text color on hover */
+        }
+
+
+        .midc {
+            background: #36393f;
+            width: calc(100%);
+            margin: 0 auto;
+            padding: 30px;
+            text-align: center;
+            box-sizing: border-box;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+
+        .midc img {
+            width: 50px;
+            height: 50px;
+            margin-bottom: 20px;
+        }
+
+        .image-container {
+            border-radius: 10px;
+            width: 100px;
+            height: 100px;
+            background-color: #000000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            top: 20px;
+            left: 20px;
+        }
+
+        .image-container img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        @media (max-width: 768px) {
+            .image-container img {
+                width: 200px;
+                height: 400px;
+                text-align: left;
+                object-fit: contain;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="logo">
+            <%= client.user.username %>
+        </div>
+        <h3>USED IN <%= client.guilds.cache.size %> DISCORD SERVERS | 100% FREE</h3>
+        <h1>Run a Command <span class="purple">.help</span> For safely and effectively</h1>
+        <br>
+        <p>With <span class="green">built-in moderation</span> and <span class="green">crisis intervention</span>, Koko
+            is the best way to run a /vent channel on Discord.</p>
+        <br>
+        <button href="/dashboard" class="styled-link">Dashboard <button class="button"> </button>
+        <button class="button"> <a class="styled-link" href="#"> Add To Discord Server </a></button>
+        <br>
+        <br>
+
+        <img style="width:100%;text-align: center;"
+            src="https://cdn.discordapp.com/attachments/1107734161864785950/1108277480336408606/1684304333922.png">
+    </div>
+
+
+</body>
+
+</html>
+
+</div>
+</body>
+
+</html>

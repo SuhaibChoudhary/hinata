@@ -1,0 +1,1 @@
+{"version":2,"languages":{"nodejs-npm":{"specfileHash":"5846eb889d4d84f2569480f1bcaa3aa7","lockfileHash":"06f06c57b1b02c53de4331bd810816b8","guessedImports":["express","express-session","passport","passport-discord","ejs"],"guessedImportsHash":"7c0206ed726fffe1331bde42d9b101cb"}}}
