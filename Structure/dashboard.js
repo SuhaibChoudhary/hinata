@@ -43,7 +43,7 @@ app.set('views', 'views');
 passport.use(new DiscordStrategy({
   clientID: '1111579099434074172',
   clientSecret: 'qKF9RBi6A2FDEwurYXC-tsJCqPSYAAIh',
-  callbackURL: 'http://localhost:3000/auth/discord/callback',
+  callbackURL: 'https://hinata-six.vercel.app/auth/discord/callback',
   scope: ['identify', 'guilds']
 }, (accessToken, refreshToken, profile, done) => {
   const user = {
