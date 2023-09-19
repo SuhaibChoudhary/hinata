@@ -23,9 +23,14 @@ const Welcome = require("../Database/welcome");
 const Premium = require('../Database/premium');
 const RedeemCode = require('../Database/redeemCode');
 
-// Configure express-session middleware
+const crypto = require('crypto');
+
+// Generate a random secret key (typically 32 or 64 characters)
+const secretKey = crypto.randomBytes(32).toString('hex');
+
+// Use this secret key in your express-session configuration
 app.use(session({
-  secret: 'YOUR_SESSION_SECRET',
+  secret: secretKey,
   resave: false,
   saveUninitialized: false
 }));
