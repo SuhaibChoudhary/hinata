@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "hinata is bot for new generation",
   "main": "index.js",
+  "builds": [
+      { "src": "index.js", "use": "@vercel/node" }
+   ],
   "dependencies": {
     "body-parser": "^1.20.2",
     "discord.js": "^14.11.0",
