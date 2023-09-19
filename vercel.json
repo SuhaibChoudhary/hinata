@@ -1,0 +1,10 @@
+{
+   "version": 2,
+   "name": "hinata",
+   "builds": [
+      { "src": "node.js", "use": "@vercel/node" }
+   ],
+   "routes": [
+      { "src": "/(.*)", "dest": "/app.js" }
+   ]
+}
