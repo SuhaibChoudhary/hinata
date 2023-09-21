@@ -73,7 +73,7 @@ app.use(passport.session());
 
 // Routes
 app.get('/', (req, res) => {
-  res.render("index", { client: client });
+  res.render("index.ejs", { client: client });
 });
 
 
