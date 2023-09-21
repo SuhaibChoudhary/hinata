@@ -36,7 +36,7 @@ app.use(session({
 }));
 
 // Configure EJS as the view engine
-app.set("views", __dirname + "/views");
+app.set("views", __dirname + "../views");
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + "public"));
 
@@ -95,7 +95,7 @@ app.get('/dashboard', (req, res) => {
       return permissions.has(discord.PermissionFlagsBits.ManageGuild);
     });
 
-    res.render('dashboard', { user: req.user, guilds: guildsWithManageServerPerm, bot: client });
+    res.render('dashboard.ejs', { user: req.user, guilds: guildsWithManageServerPerm, bot: client });
   } else {
     res.redirect('/auth/discord');
   }
@@ -121,7 +121,7 @@ app.get('/dashboard/:guildID', async (req, res) => {
     if (!member || !member.permissions.has(discord.PermissionFlagsBits.ManageGuild)) {
       return res.redirect("/dashboard");
     }
-    res.render('settings', { user, guild });
+    res.render('settings.ejs', { user, guild });
   } else {
     res.redirect('/auth/discord');
   }
