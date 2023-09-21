@@ -36,8 +36,9 @@ app.use(session({
 }));
 
 // Configure EJS as the view engine
-app.set('view engine', 'ejs');
-app.set('views', 'views');
+app.set("views", __dirname + "/views");
+app.set("view engine", "ejs");
+app.use(express.static(__dirname + "public"));
 
 // Discord OAuth configuration
 passport.use(new DiscordStrategy({
