@@ -42,8 +42,8 @@ app.use(express.static(__dirname + "public"));
 
 // Discord OAuth configuration
 passport.use(new DiscordStrategy({
-  clientID: '1111579099434074172',
-  clientSecret: 'qKF9RBi6A2FDEwurYXC-tsJCqPSYAAIh',
+  clientID: '1043002684141207623',
+  clientSecret: 'IpIOtGicpWbCr0bTiiHGYjLaojp8TBS0',
   callbackURL: 'https://hinata-six.vercel.app/auth/discord/callback',
   scope: ['identify', 'guilds']
 }, (accessToken, refreshToken, profile, done) => {
