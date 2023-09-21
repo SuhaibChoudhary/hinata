@@ -8,7 +8,7 @@ const ejs = require('ejs');
 const client = require('../index');
 const app = express();
 const bodyParser = require('body-parser');
-
+const path = require('path');
 // Parse URL-encoded bodies
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -36,7 +36,7 @@ app.use(session({
 }));
 
 // Configure EJS as the view engine
-app.set("views", __dirname + "../views");
+app.set('views', path.join(__dirname, '../views'));
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + "public"));
 
