@@ -44,7 +44,7 @@ app.use(express.static(__dirname + "public"));
 passport.use(new DiscordStrategy({
   clientID: '1043002684141207623',
   clientSecret: 'IpIOtGicpWbCr0bTiiHGYjLaojp8TBS0',
-  callbackURL: 'https://hinata-six.vercel.app/auth/discord/callback',
+  callbackURL: 'https://hinata-rg40yonaj-suhaibchoudhary.vercel.app/auth/discord/callback',
   scope: ['identify', 'guilds']
 }, (accessToken, refreshToken, profile, done) => {
   const user = {
