@@ -1,9 +1,9 @@
 {
 "bot": {
-        "token": "MTA3NDY5NjU4MDQ1MzYzNDA0OA.GIeXXZ.I8dw4AO5YU0xFnjDQuR_gfPo5fwrLzZTzq3Gc4"
+        "token": "your-token"
 },
 "embed": {
-        "color": "86DC3D"
+        "color": "hex-color-code"
 }
         
 }
